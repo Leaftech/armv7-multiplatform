@@ -64,9 +64,9 @@ make_kernel () {
 
 	cd ${DIR}/KERNEL/
 	echo "-----------------------------"
-	echo "make -j${CORES} ARCH=arm LOCALVERSION=-${BUILD} CROSS_COMPILE=${CC} ${address} ${image} modules"
+	echo "make -j${CORES} ARCH=arm LOCALVERSION=-${BUILD} CROSS_COMPILE=${CC} ${address} bzImage modules"
 	echo "-----------------------------"
-	make -j${CORES} ARCH=arm LOCALVERSION=-${BUILD} CROSS_COMPILE=${CC} ${address} ${image} modules
+	make -j${CORES} ARCH=arm LOCALVERSION=-${BUILD} CROSS_COMPILE=${CC} ${address} bzImage modules
 
 	unset DTBS
 	cat ${DIR}/KERNEL/arch/arm/Makefile | grep "dtbs:" >/dev/null 2>&1 && DTBS=enable
@@ -244,7 +244,7 @@ export LINUX_GIT
 #unset FULL_REBUILD
 FULL_REBUILD=1
 if [ "${FULL_REBUILD}" ] ; then
-	/bin/sh -e "${DIR}/scripts/git.sh" || { exit 1 ; }
+	# /bin/sh -e "${DIR}/scripts/git.sh" || { exit 1 ; }
 
 	if [ "${RUN_BISECT}" ] ; then
 		/bin/sh -e "${DIR}/scripts/bisect.sh" || { exit 1 ; }

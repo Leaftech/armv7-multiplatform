@@ -61,6 +61,7 @@ mmc_write_boot () {
 
 	#Assuming boot via zImage on first partition...
 	sudo cp -v "${DIR}/deploy/${KERNEL_UTS}.zImage" "${location}/zImage"
+	sudo cp -v "${DIR}/deploy/${KERNEL_UTS}.zImage" "${location}/vmlinuz-${KERNEL_UTS}"
 
 	if [ -f "${DIR}/deploy/${KERNEL_UTS}-dtbs.tar.gz" ] ; then
 
